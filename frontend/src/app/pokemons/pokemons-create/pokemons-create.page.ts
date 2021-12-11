@@ -2,6 +2,7 @@ import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { PhotoService } from 'src/app/_services/photo.service';
 import { PokemonsService } from 'src/app/_services/pokemons.service';
 
 @Component({
@@ -15,7 +16,8 @@ export class PokemonsCreatePage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private pokemonService: PokemonsService,
-    private router: Router
+    private router: Router,
+    private photoService: PhotoService
   ) { 
     this.pokemonsForm=this.formBuilder.group({
       pokemon_name: [""],
@@ -42,5 +44,11 @@ export class PokemonsCreatePage implements OnInit {
       }
     )
   }
+
+  async openCamera(){
+    const picture_data = await this.photoService.takePicture();
+
+    this.pokemonsForm.patchValue(picture_data);
+  } 
 
 }

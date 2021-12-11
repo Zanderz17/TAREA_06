@@ -50,7 +50,8 @@
 
           <ion-item>
             <ion-label position="floating">Pokemon Image</ion-label>
-            <ion-input type="text" formControlName="pokemon_image" ></ion-input>
+            <ion-input type="text" formControlName="pokemon_image" type="url" ></ion-input>
+            <ion-icon name="camera-outline" slot="end" (click)="openCamera()"> </ion-icon>
           </ion-item>
           
           <ion-row>

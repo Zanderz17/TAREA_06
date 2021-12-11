@@ -3,11 +3,12 @@ var app = express();
 var mysql = require('mysql');
 var cors = require('cors');
 app.use(cors());
-app.use(express.json());
+app.use(express.json({limit: '50 mb'}));
 
 const port = 3000;
 
-
+var picturesDirectory= 'figures/';
+var fs = require('fs');
 
 /*
   Método GET que listar todos los pokemons (arreglo de pokemones)
@@ -174,8 +175,24 @@ app.delete('/pokemons/:pokemon_id', function(req, res){
       connection.end();
     });
   });
-  
 
+
+  app.post('/figures', function(req, res){
+
+    var fileName = `${new Date().getTime()}.jpeg`;
+
+    var pokemon_image = picturesDirectory + fileName;
+
+    fs.writeFile(pokemon_image, req.body.picture, 'base64', function(error){
+      if (error) throw error;
+
+      res.send({pokemon_image: pokemon_image})
+    })
+
+  });
+
+
+app.use('/figures', express.static('figures'));
 
 app.listen(port, function(){
     console.log("Server start in port 3000!")

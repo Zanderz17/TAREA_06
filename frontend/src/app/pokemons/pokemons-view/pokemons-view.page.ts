@@ -31,7 +31,15 @@ export class PokemonsViewPage implements OnInit {
           }
         )
       }
-    )
+    );
   }
 
+  getPictureUrl(pokemon_image){
+    if(pokemon_image.includes("http://") || pokemon_image.includes("https://")){
+      return pokemon_image;
+    }
+    else{
+      return 'http://localhost:3000/'+pokemon_image;
+    }
+  }
 }

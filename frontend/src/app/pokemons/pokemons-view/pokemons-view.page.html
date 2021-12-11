@@ -21,7 +21,7 @@
   <ion-grid *ngIf="pokemon">
     <ion-row>
       <ion-col>
-        <img src={{pokemon.pokemon_image}}/>
+        <img *ngIf="pokemon.pokemon_image" [src]="getPictureUrl(pokemon.pokemon_image)"/>
       </ion-col>
       <ion-col>
         <div>
