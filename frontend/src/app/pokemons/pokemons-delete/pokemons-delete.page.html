@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="pokemons"></ion-back-button>
+    </ion-buttons>
+    <ion-title>pokemons-delete</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <p text-align: center>
+    <img alt="Pokedex_image" src="http://mrwgifs.com/wp-content/uploads/2014/02/Sad-Pikachu-Clone-Pikachu-Dont-Want-To-Fight-Anymore-In-Pokemon-The-First-Movie-Gif.gif">
+  </p>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <p>
+          Are you sure to launch this pokemon?
+        </p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" color="dark" [routerLink]="['/pokemons/view', pokemon_id]" routeDirection="back">
+          No
+        </ion-button>
+      </ion-col>
+
+      <ion-col>
+        <ion-button expand="full" color="danger" (click)="deletePokemon(pokemon_id)">
+          Yes
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
